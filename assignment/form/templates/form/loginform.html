@@ -1,0 +1,72 @@
+
+{% load static %}
+<html>
+    <style>
+        * {
+  box-sizing: border-box;
+}
+
+
+        .message{
+            text-align: center;
+            font-size: large;
+            background-color: rgb(254, 45, 45);
+            color: rgb(255, 255, 255);
+            outline: auto;
+
+        }
+
+        a{
+            padding: 3%;
+        }
+
+        .cont{
+        border-radius: 5px;
+        background-color: #f2f2f2;
+        padding: 20px;
+        }
+        
+input, select, textarea {
+  width: 20%;
+  padding: 4px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+}
+
+label {
+  padding: 10px 0px 0px 0;
+  display: inline-block;
+}
+
+         </style>
+<head>
+<title>Form</title>
+    <!-- <link rel="stylesheet" type="text/css" href="{% static 'contactform.css'  %}"> -->
+    <!-- <link rel="stylesheet" type="text/css" href='{% static "contactform.css" %}?{% now "U" %}'> -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+<body>
+<div class="cont"> 
+    <div class="message">
+    {% if message %}
+        {{ message }}
+    {% endif %}
+    </div>
+    <form method="POST" style="text-align:center;">
+        <fieldset>
+            <legend style="background-color: rgb(22, 80, 240) ; color:white"><b>User Login</b></legend>
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-default" style="background-color: rgb(40, 78, 230) ; color: white;">Submit</button>
+        </fieldset>
+        <div style="display:inline-flex;">
+            <a href="http://127.0.0.1:8000/">Not registed already? Click here to register</a>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>

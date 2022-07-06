@@ -1,0 +1,140 @@
+{% load static %}
+<html>
+<head>
+    <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="/scripts/snippet-javascript-console.min.js?v=1"></script>
+</head>
+<body>
+        <h1 style="text-align: center; background-color: rgb(10, 85, 235); color: white;">
+            <div>
+                {% if username %}
+                Hello {{ username }} <br>
+            </div>
+            Welcome to your account
+            {% endif %}
+            <br>
+        </h1>
+
+    <table class="table table-hover">
+	<tr>
+        <div style="text-align: center;">
+        <div style="text-align:center;">{{title}}</div>  
+        <a class="btn btn-default" href="http://127.0.0.1:8000/login" style="color:azure; background-color:rgb(22, 75, 236); margin-bottom: 1%;">Log out</a>
+        <br>
+        <a class="btn btn-default"href="{{href}}" style="color:azure; background-color:rgb(22, 75, 236); margin-bottom: 2%;">Edit Information</a>
+        </div >
+        <th>Username</th>
+        <th scope="col">Password</th>
+        <th scope="col">ID</th>
+        <th scope="col">First Name</th>
+        <th scope="col">Last Name</th>
+        <th scope="col">Date of Birth</th>
+        <th scope="col">Gender</th>
+        <th scope="col">Email</th>
+        <th scope="col">Contact</th>
+        <th scope="col">Address</th>
+        <th scope="col">Salary</th>
+	</tr>
+    {% for item in data_list %}
+	<tr>
+        <td>{{item.username}}</td>
+        <td>{{item.password}}</td>
+        <td >{{item.id}}</td>
+        <td>{{item.firstname}}</td>
+        <td>{{item.lastname}}</td>
+        <td>{{item.dob}}</td>
+        <td>{{item.gender}}</td>
+        <td>{{item.email}}</td>
+        <td>{{item.contact}}</td>
+        <td>{{item.address}}</td>
+        <td>{{item.salary}}</td>
+
+	</tr>
+    {% endfor %}
+
+
+</table>
+   
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+<!-- {% load static %}
+<html>
+<title>Data Entries</title>
+<link rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+<style>
+body{
+   background-color: rgb(236, 176, 72);
+}
+h1{
+    background-image: url('https://i.pinimg.com/564x/f2/8e/9e/f28e9e9f211291604e81c3c938336f77.jpg');
+    opacity: 60%;
+    color:rgb(0, 0, 0);
+    margin: 0;
+    padding: 100px;
+}
+
+</style>
+<body>
+<table class="table">
+    <thead style="background-color:rgb(57, 53, 53); color: white; margin: 0;">
+        <h1 style="text-align: center;">
+            <div style="background-color: rgb(255, 255, 255); color: rgb(0, 0, 0); width: 30%; margin-left: auto; margin-right: auto;">
+            {% if username %}
+            Hello {{ username }} <br>
+            </div>
+            Welcome to your account.
+            {% endif %}
+            <br>
+        </h1>
+    <tr>
+        <div style="font-size:large; background-color:rgb(239, 239, 231);">
+       <a href={{href}}>Edit Your Information</a>
+       <div style="text-align:center;">{{title}}</div>
+       <a href="http://127.0.0.1:8000/login">Log out</a>
+    </div>
+        <th scope="col">Username</th>
+        <th scope="col">Password</th>
+        <th scope="col">ID</th>
+        <th scope="col">First Name</th>
+        <th scope="col">Last Name</th>
+        <th scope="col">Date of Birth</th>
+        <th scope="col">Gender</th>
+        <th scope="col">Email</th>
+        <th scope="col">Contact</th>
+        <th scope="col">Address</th>
+        <th scope="col">Salary</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for item in data_list %}
+    <tr>
+        <th>{{item.username}}</th>
+        <th>{{item.password}}</th>
+        <th>{{item.id}}</th>
+        <th>{{item.firstname}}</th>
+        <th>{{item.lastname}}</th>
+        <th>{{item.dob}}</th>
+        <th>{{item.gender}}</th>
+        <th>{{item.email}}</th>
+        <th>{{item.contact}}</th>
+        <th>{{item.address}}</th>
+        <th>{{item.salary}}</th>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+</body>
+</html> -->

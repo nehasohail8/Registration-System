@@ -1,0 +1,123 @@
+{% load static %}
+<html>
+<head>
+    <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+        <h1 style="text-align: center; background-color: rgb(10, 85, 235); color: white;">
+            <div>
+                {% if username %}
+                Hello {{ username }} <br>
+            </div>
+            Welcome to your account
+            {% endif %}
+            <br>
+        </h1>
+
+    <table class="table table-hover">
+	<tr>
+        <div style="text-align: center;">
+        <a class="btn btn-default" href="http://127.0.0.1:8000/admin" style="color:azure; background-color:rgb(22, 75, 236); margin-bottom: 1%;">Log out</a>
+        <br>
+        <a class="btn btn-default"href="http://127.0.0.1:8000/pdf" style="color:azure; background-color:rgb(22, 75, 236); margin-bottom: 1%;">Click here to convert to pdf</a>
+        <br>
+        <a class="btn btn-default"href="http://127.0.0.1:8000/graphs" style="color:azure; background-color:rgb(22, 75, 236); margin-bottom: 2%;">Click here to generate graphs</a>
+        <form method="POST" style="text-align:center;">
+            <fieldset>
+                {% csrf_token %}
+                <div style="display:none">
+                {{ form.as_p }}
+                </div>
+                <button id='save' type="submit" class="btn btn-default" style="background-color: rgb(40, 78, 230) ; color: white; display: none;">Submit</button>
+            </fieldset>
+        </form>
+        <div style="background-color: rgb(248, 64, 64); color:white; font-weight:bolder">
+        {% if message %}
+        {{ message }}
+        {% endif %}
+        </div>
+
+
+
+
+        </div>
+        <th>Username</th>
+        <th scope="col">Password</th>
+        <th scope="col">ID</th>
+        <th scope="col">First Name</th>
+        <th scope="col">Last Name</th>
+        <th scope="col">Date of Birth(y-m-d)</th>
+        <th scope="col">Gender<br>(male, <br>female,<br>other)</th>
+        <th scope="col">Email</th>
+        <th scope="col">Contact</th>
+        <th scope="col">Address</th>
+        <th scope="col">Salary</th>
+	</tr>
+    {% for item in data_list %}
+	<tr id={{item.id}}>
+        <td id="username">{{item.username}}</td>
+        <td id="password">{{item.password}}</td>
+        <td id="id">{{item.id}}</td>
+        <td id="firstname">{{item.firstname}}</td>
+        <td id="lastname">{{item.lastname}}</td>
+        <td id="dob">{{item.dob}}</td>
+        <td id="gender">{{item.gender}}</td>
+        <td id="email">{{item.email}}</td>
+        <td id="contact">{{item.contact}}</td>
+        <td id="address">{{item.address}}</td>
+        <td id="salary">{{item.salary}}</td>
+
+	</tr>
+    {% endfor %}
+
+
+</table>
+    <script type="text/javascript">
+
+        var UPDATEVAL;
+        var FIELDVAL;
+        var IDVAL;
+
+        document.addEventListener('DOMContentLoaded', (event) => {
+    document.querySelectorAll("table tr:nth-child(2)").forEach(() => {
+        document.querySelectorAll("td").forEach(function(node){
+node.ondblclick=function(){
+    var val=this.innerHTML;
+    FIELDVAL = this.id;  
+    if (FIELDVAL === 'id' || FIELDVAL === 'username' || FIELDVAL === 'email' || FIELDVAL === 'dob'){alert('oops, you cannot change this field')};
+    IDVAL=this.parentNode.id;
+    var input=document.createElement("input");
+    input.value=val;
+    input.onblur=function(){
+        var val=this.value;
+        this.parentNode.innerHTML=val;
+        UPDATEVAL=val;    
+    if ( FIELDVAL === 'gender' && FIELDVAL != 'male' && FIELDVAL!= 'female' && FIELDVAL!= 'other') { alert('Invalid input')};    
+    document.querySelector('input[name="primary_key"]').value=IDVAL;
+    document.querySelector('input[name="updated_value"]').value=UPDATEVAL;
+    document.querySelector('input[name="updated_field"]').value=FIELDVAL;
+    $("#save").trigger('click');
+    }
+    this.innerHTML="";
+    this.appendChild(input);
+    input.focus();
+
+}
+}
+);
+    });
+});
+
+       
+
+    </script>
+</body>
+</html>
+
+
+
+
+
