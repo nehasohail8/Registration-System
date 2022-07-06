@@ -3,6 +3,8 @@
 This is a User registration System.
 
 Tech used: HTML/CSS/Boostrap/JavaScript/Jquery/MySQL/django/python
+
+
 Here are some of my responsibilities during this project:
 Designed general website layout
 Created the homepage, login, signup as well as the template for all other pages (HTML/CSS/Bootstrap, Fully responsive)
